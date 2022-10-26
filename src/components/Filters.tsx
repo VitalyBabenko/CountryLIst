@@ -1,13 +1,15 @@
 import {FC, ChangeEvent} from 'react'
 import { MdSearch, MdKeyboardArrowDown } from 'react-icons/md'
-import { useAppSelector } from '../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { fetchCountries } from '../store/reducers/ActionCreators'
 import  '../scss/filters.scss'
+import { countriesSlice } from '../store/reducers/CountriesSlice'
 
 const Filters: FC = () => {
+  const dispatch = useAppDispatch()
   const { darkMode } = useAppSelector(state => state.darkModeReducer)
-  const { countries } = useAppSelector(state => state.countriesReducer)
+  const { filterByInput } = countriesSlice.actions;
 
- 
   const debounce = (fn: Function, ms = 250) => {
     let timeoutId: ReturnType<typeof setTimeout>;
     return function (this: any, ...args: any[]) {
@@ -16,37 +18,29 @@ const Filters: FC = () => {
     };
   };
 
-  const inputFilterHandler = (e: ChangeEvent<HTMLInputElement> ) => {
-    debounce(() => {
-      let data = [...countries]
-      data = data.filter(country =>
-        country.name.common.toLowerCase().includes(e.target.value.toLowerCase()))
-      console.log(data)
-   },250)
+  let handleInputFilter = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(filterByInput(e.target.value))
   }
-  
 
-  // const handleSearch = (search:string, region:string) => {
-  //   let result = [...countries];
-  //   if(region) {
-  //     result = result.filter(country => country.region.includes(region))
-  //   }
-  //   if(search) {
-  //     result = result.filter(country => country.name.common.toLowerCase().includes(search.toLowerCase()))
-  //   }
-  // }
+  handleInputFilter = debounce(handleInputFilter);
 
+  const handleRegionFilter = (e: ChangeEvent<HTMLSelectElement>) => {
+    dispatch(fetchCountries(e.target.value))
+  }
 
   return (
    <div className={darkMode ? "filters-dark" : 'filters'}>
     <MdSearch />
     <MdKeyboardArrowDown />
-      <input
-        onInput={inputFilterHandler}
-        type="text"
-        placeholder="Seatch for a country..." />
-      
-    <select id="regionFilter">
+    <input
+      onInput={handleInputFilter}
+      type="text"
+      placeholder="Seatch for a country..."
+    />
+    <select
+      onChange={handleRegionFilter}
+      id="regionFilter"
+    >
       <option value="all">Filter by Region</option>
       <option value="Africa">Africa</option>
       <option value="Asia">Asia</option>
@@ -54,7 +48,7 @@ const Filters: FC = () => {
       <option value="North America">North America</option>
       <option value="South America">South America</option>
       <option value="Australia">Australia</option>
-   </select>
+    </select>
  </div>
   )
 }

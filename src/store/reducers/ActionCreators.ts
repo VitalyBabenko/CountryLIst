@@ -3,34 +3,37 @@ import axios from 'axios'
 
 import { ICountry } from '../../types/ICountry'
 
-// const appAxios = axios.create({
-//    baseURL: `https://restcountries.com/v3.1/`,
-//    method: 'GET',
-//    params: {
-      
-//    }
-// })
+const appAxios = axios.create({
+   baseURL: `https://restcountries.com/v3.1/`,
+   method: 'GET'
+})
+
 
 
 export const fetchCountries = createAsyncThunk(
    'countries/fetchAll',
 
-   async (_, thunkAPI) => {
+   async (region:string | undefined = 'all', thunkAPI) => {
       try {
-         const { data } = await axios.get<ICountry[]>('https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital')
-         return data
+         if (region === 'all') {
+            const { data } = await appAxios<ICountry[]>(`all?fields=name,flags,population,region,capital`);
+            return data
+         } else {
+            const { data } = await appAxios<ICountry[]>(`subregion/${region}?fields=name,flags,population,region,capital`);
+            return data
+         } 
       } catch(e) {
          return thunkAPI.rejectWithValue('error')
       }
    }
-) 
+)
 
 export const fetchCountry = createAsyncThunk(
    'country/fetch',
 
    async (name:string | undefined, thunkAPI) => {
       try {
-         const { data } = await axios.get<ICountry[]>(`https://restcountries.com/v3.1/name/${name}?&fields=name,flags,population,region,subregion,capital,area,startofweek,languages,borders`)
+         const { data } = await appAxios<ICountry[]>(`name/${name}?&fields=name,flags,population,region,subregion,capital,area,startofweek,languages,borders`)
          return data[0]
       } catch(e) {
          return thunkAPI.rejectWithValue('error')
@@ -43,8 +46,7 @@ export const fetchNeighbors = createAsyncThunk(
 
    async (codes: [string], thunkAPI ) => {
       try {
-         const { data } = await axios.get<ICountry[]>(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}&fields=name`)
-        
+         const { data } = await appAxios<ICountry[]>(`alpha?codes=${codes.join(',')}&fields=name`)     
          return data
       } catch(e) {
          return thunkAPI.rejectWithValue('error')

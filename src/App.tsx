@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes,Route } from 'react-router-dom'
 
 import {useAppSelector, useAppDispatch} from './hooks/redux'
@@ -16,6 +16,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCountries())
+    // eslint-disable-next-line
   },[])
 
   return (
