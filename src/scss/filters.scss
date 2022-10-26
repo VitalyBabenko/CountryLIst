@@ -1,0 +1,43 @@
+@import "./index.scss";
+.filters,
+.filters-dark {
+   @include flex($justify: space-between, $align: center);
+   width: 100%;
+   padding: 35px 0;
+
+   svg {
+      // search and arrow bottom icons
+      position: absolute;
+      right: 7.9%;
+      height: 23px;
+      width: initial;
+      color: #8b8b8b;
+      pointer-events: none;
+   }
+
+   :first-child {
+      // search icon
+      left: 7.9%;
+   }
+
+   input {
+      @include app-item($padding: 15px 150px 15px 45px, $border-radius: 1px);
+   }
+
+   select {
+      @include app-item($padding: 15px 70px 15px 17px, $border-radius: 1px);
+      text-align: start;
+      cursor: pointer;
+   }
+
+   select::-ms-expand {
+      display: none;
+   }
+}
+
+.filters-dark {
+   input,
+   select {
+      @include app-item-dark();
+   }
+}

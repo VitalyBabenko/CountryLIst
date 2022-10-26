@@ -1,0 +1,46 @@
+@import "./index.scss";
+
+header {
+   @include flex($justify: space-between, $align: center);
+   @include app-item($padding: 20px 7%);
+   margin-bottom: 2px;
+   width: 100%;
+   font-size: 25px;
+
+   a {
+      //Link
+      color: inherit;
+      margin-right: auto;
+      font-size: 28px;
+      font-weight: 700;
+      text-decoration: none;
+   }
+
+   button {
+      @include flex($align: center);
+      border: none;
+      background-color: inherit;
+      cursor: pointer;
+
+      svg {
+         justify-self: flex-end;
+         height: 25px;
+         width: initial;
+      }
+
+      span {
+         margin-left: 5px;
+         font-size: 20px;
+      }
+   }
+}
+
+header.dark {
+   @include app-item-dark();
+
+   button svg,
+   button span {
+      color: white;
+   }
+
+}

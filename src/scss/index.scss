@@ -1,0 +1,62 @@
+$app-bg: #fafafa;
+$app-bg-dark: #242d36;
+$borders-color: #f4f4f4;
+$item-bg: #ffffff;
+$item-bg-dark: #2c3741;
+$item-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.31);
+
+@mixin flex($direction: row, $align: initial, $justify: initial) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin app-item($padding: 0, $border-radius: 0) {
+  padding: $padding;
+  color: black;
+  background-color: #fff;
+  text-decoration: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: $item-shadow;
+}
+
+@mixin app-item-dark() {
+  color: white;
+  background-color: $item-bg-dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.root {
+  background-color: #fafafa;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  background-color: $app-bg;
+}
+
+.app-dark {
+  background-color: $app-bg-dark;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 7%;
+  width: 100%;
+}

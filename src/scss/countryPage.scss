@@ -1,0 +1,124 @@
+@import "./index.scss";
+
+.country-page,
+.country-page-dark {
+   display: grid;
+   grid-template-areas:
+      "button button button button"
+      "flag flag title title"
+      "flag flag info1 info2"
+      "flag flag borders borders";
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   grid-template-rows: 120px 100px 145px 120px;
+
+   padding: 0 7%;
+   height: 100vh;
+   background-color: $app-bg;
+
+   button {
+      grid-area: button;
+      justify-self: start;
+      align-self: center;
+      @include flex($justify: space-around, $align: center);
+      @include app-item($border-radius: 3px);
+      font-size: 14px;
+      margin-top: 7px;
+      width: 77px;
+      height: 30px;
+      cursor: pointer;
+   }
+
+   img {
+      grid-area: flag;
+      width: 100%;
+      box-shadow: $item-shadow;
+   }
+
+   h2 {
+      grid-area: title;
+      padding: 20px 0 0 40px;
+      margin: 0;
+      font-size: 28px;
+   }
+
+   ul {
+      grid-area: info1;
+      padding: 0 0 0 40px;
+   }
+
+   ul:nth-child(5) {
+      grid-area: info2;
+      padding: 0 0 0 15px;
+   }
+
+   .country-borders,
+   .country-borders-dark {
+      grid-area: borders;
+      padding: 0 0 0 40px;
+   }
+}
+
+.country-page-dark {
+   background-color: $app-bg-dark;
+   color: white;
+
+   button {
+      background-color: $item-bg-dark;
+      color: white;
+   }
+}
+
+@media screen and (max-width: 853px) {
+   .country-page,
+   .country-page-dark {
+      grid-template-areas:
+         "button button button button"
+         "flag flag title title"
+         "flag flag info1 info1"
+         "borders borders info2 info2 ";
+      grid-template-rows: 90px 90px 145px 120px;
+
+      h2 {
+         font-size: 24px;
+         padding: 0 0 0 40px;
+      }
+
+      ul:nth-child(5) {
+         padding: 0 0 0 40px;
+      }
+
+      .country-borders,
+      .country-borders-dark {
+         padding: 0;
+         p {
+            margin: 20px 0 10px 0;
+         }
+      }
+   }
+}
+
+@media screen and (max-width: 615px) {
+   .country-page,
+   .country-page-dark {
+      @include flex($direction: column, $justify: flex-start);
+
+      button {
+         margin: 25px auto 25px 0;
+         padding: 6px 0;
+      }
+
+      img {
+         margin-bottom: 25px;
+      }
+
+      h2 {
+         padding: 0;
+         margin-bottom: 20px;
+      }
+
+      ul,
+      ul:nth-child(5) {
+         padding: 0;
+      }
+   }
+}

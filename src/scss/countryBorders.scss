@@ -1,0 +1,23 @@
+@import "./index.scss";
+
+.country-borders,
+.country-borders-dark {
+   display: flex;
+   flex-wrap: wrap;
+
+   p {
+      width: 100%;
+      margin: 40px 0 10px 0;
+      font-weight: 600;
+   }
+
+   a {
+      @include app-item($padding: 4px 12px, $border-radius: 2px);
+      height: fit-content;
+      margin: 0 12px 10px 0;
+   }
+}
+
+.country-borders-dark a {
+   @include app-item-dark();
+}
