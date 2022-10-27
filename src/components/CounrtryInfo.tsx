@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { useAppSelector } from '../hooks/redux'
 import '../scss/countryInfo.scss'
 
 interface CountryInfoProps {
@@ -24,9 +23,9 @@ const CounrtryInfo: FC<CountryInfoProps> = ({
    startOfWeek,
    languages
 }) => {
-   const { darkMode } = useAppSelector(state => state.darkModeReducer)
+
    return (
-      <ul className={darkMode ? 'country-info-dark' : 'country-info'} >
+      <ul className='country-info'>
          
          {officialName && <li>Official name:  <span>{officialName}</span></li>}
          {population && <li>Population:  <span>{population}</span></li>}

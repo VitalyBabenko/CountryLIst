@@ -1,13 +1,12 @@
 import {FC, ChangeEvent} from 'react'
 import { MdSearch, MdKeyboardArrowDown } from 'react-icons/md'
-import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { useAppDispatch } from '../hooks/redux'
 import { fetchCountries } from '../store/reducers/ActionCreators'
 import  '../scss/filters.scss'
 import { countriesSlice } from '../store/reducers/CountriesSlice'
 
 const Filters: FC = () => {
   const dispatch = useAppDispatch()
-  const { darkMode } = useAppSelector(state => state.darkModeReducer)
   const { filterByInput } = countriesSlice.actions;
 
   const debounce = (fn: Function, ms = 250) => {
@@ -29,27 +28,27 @@ const Filters: FC = () => {
   }
 
   return (
-   <div className={darkMode ? "filters-dark" : 'filters'}>
-    <MdSearch />
-    <MdKeyboardArrowDown />
-    <input
-      onInput={handleInputFilter}
-      type="text"
-      placeholder="Seatch for a country..."
-    />
-    <select
-      onChange={handleRegionFilter}
-      id="regionFilter"
-    >
-      <option value="all">Filter by Region</option>
-      <option value="Africa">Africa</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="North America">North America</option>
-      <option value="South America">South America</option>
-      <option value="Australia">Australia</option>
-    </select>
- </div>
+    <div className='filters'>
+      <MdSearch />
+      <MdKeyboardArrowDown />
+      <input
+        onInput={handleInputFilter}
+        type="text"
+        placeholder="Seatch for a country..."
+      />
+      <select
+        onChange={handleRegionFilter}
+        id="regionFilter"
+      >
+        <option value="all">Filter by Region</option>
+        <option value="Africa">Africa</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Australia">Australia</option>
+      </select>
+    </div>
   )
 }
 

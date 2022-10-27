@@ -1,21 +1,18 @@
 import { FC } from 'react'
 import { MdDarkMode, MdOutlineDarkMode } from 'react-icons/md'
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { darkModeSlice } from '../store/reducers/DarkModeSlice';
+import { useTheme } from '../hooks/useTheme'
 import {Link} from 'react-router-dom'
 import '../scss/header.scss'
 
-
 const Header: FC = () => {
-   const dispatch = useAppDispatch()
-   const { darkMode } = useAppSelector(state => state.darkModeReducer)
-   const { toggleThemeMode } = darkModeSlice.actions
+   const { theme, setTheme } = useTheme()
+   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
    return (
-      <header className={darkMode ? 'dark' : ''} >
+      <header>
          <Link to='/' >Were in the world?</Link>
-         <button   onClick={() => dispatch(toggleThemeMode(!darkMode))}  >
-            {darkMode ?
+         <button  onClick={toggleTheme}  >
+            {theme === 'dark' ?
                <>
                   <MdDarkMode />
                   <span>Light mode</span>
@@ -29,7 +26,5 @@ const Header: FC = () => {
       </header>
    )
 }
-
-
 
 export default Header

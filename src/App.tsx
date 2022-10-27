@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Routes,Route } from 'react-router-dom'
 
-import {useAppSelector, useAppDispatch} from './hooks/redux'
+import { useAppDispatch } from './hooks/redux'
 import { fetchCountries } from './store/reducers/ActionCreators'
 
 import Header from "./components/Header"
@@ -12,7 +12,6 @@ import CountryPage from './pages/CountryPage'
 
 function App() {
   const dispatch = useAppDispatch()
-  const {darkMode} = useAppSelector(state => state.darkModeReducer)
 
   useEffect(() => {
     dispatch(fetchCountries())
@@ -20,7 +19,7 @@ function App() {
   },[])
 
   return (
-    <div className={darkMode ? 'app-dark' : 'app'}>
+    <div className='app'>
       <Header />
 
       <Routes>

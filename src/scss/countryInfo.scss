@@ -1,7 +1,6 @@
 @import "./index.scss";
 
-.country-info,
-.country-info-dark {
+.country-info {
    @include flex($direction: column);
    height: fit-content;
    list-style: none;
@@ -12,13 +11,10 @@
       font-weight: 600;
       font-size: 15px;
       margin-bottom: 8px;
+      color: $textColor;
 
       span {
          font-weight: 300;
       }
    }
-}
-
-.country-info-dark {
-   color: white;
 }

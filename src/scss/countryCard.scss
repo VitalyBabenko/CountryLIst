@@ -1,7 +1,6 @@
 @import "./index.scss";
 
-.country-card,
-.country-card-dark {
+.country-card {
    @include flex($direction: column);
    @include app-item($border-radius: 3px);
    width: 250px;
@@ -21,8 +20,4 @@
    li {
       padding: 0 15px;
    }
-}
-
-.country-card-dark {
-   @include app-item-dark();
 }

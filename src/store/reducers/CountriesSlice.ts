@@ -5,6 +5,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 interface CountriesState {
    countries: ICountry[];
    filtredCountries: ICountry[];
+   currentPageCounties: ICountry[];
    isLoading: boolean;
    error: string;
 }
@@ -12,6 +13,7 @@ interface CountriesState {
 const initialState: CountriesState = {
    countries: [],
    filtredCountries: [],
+   currentPageCounties: [],
    isLoading: false,
    error: ''
 }
@@ -28,7 +30,12 @@ export const countriesSlice = createSlice({
          } else {
             state.filtredCountries = state.countries;
          }
+      },
+
+      paginate(state, action: PayloadAction<ICountry[]>) {
+         state.currentPageCounties = action.payload;
       }
+
    },
    extraReducers: {
       [fetchCountries.fulfilled.type]:(state, action: PayloadAction<ICountry[]>) => {

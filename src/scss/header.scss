@@ -2,14 +2,15 @@
 
 header {
    @include flex($justify: space-between, $align: center);
-   @include app-item($padding: 20px 7%);
-   margin-bottom: 2px;
+   padding: 20px 7%;
+   background-color: $itemColor;
+   box-shadow: $shadow;
    width: 100%;
    font-size: 25px;
 
    a {
-      //Link
-      color: inherit;
+      // title
+      color: $textColor;
       margin-right: auto;
       font-size: 28px;
       font-weight: 700;
@@ -23,24 +24,16 @@ header {
       cursor: pointer;
 
       svg {
+         color: $textColor;
          justify-self: flex-end;
          height: 25px;
          width: initial;
       }
 
       span {
+         color: $textColor;
          margin-left: 5px;
          font-size: 20px;
       }
    }
-}
-
-header.dark {
-   @include app-item-dark();
-
-   button svg,
-   button span {
-      color: white;
-   }
-
 }

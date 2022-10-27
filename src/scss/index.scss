@@ -1,9 +1,21 @@
-$app-bg: #fafafa;
-$app-bg-dark: #242d36;
-$borders-color: #f4f4f4;
-$item-bg: #ffffff;
-$item-bg-dark: #2c3741;
-$item-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.31);
+html[data-theme="light"] {
+  --colors-text: hsl(200, 15%, 8%);
+  --colors-bg: hsl(0, 0, 98%);
+  --colors-ui-base: hsl(0, 0, 100%);
+  --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+}
+
+html[data-theme="dark"] {
+  --colors-text: hsl(0, 0%, 100%);
+  --colors-bg: hsl(207, 26%, 17%);
+  --colors-ui-base: hsl(209, 23%, 22%);
+  --shadow: rgba(0, 0, 0, 0.2) 0 0 8px;
+}
+
+$textColor: var(--colors-text);
+$bgColor: var(--colors-bg);
+$itemColor: var(--colors-ui-base);
+$shadow: var(--shadow);
 
 @mixin flex($direction: row, $align: initial, $justify: initial) {
   display: flex;
@@ -13,28 +25,23 @@ $item-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.31);
 }
 
 @mixin app-item($padding: 0, $border-radius: 0) {
+  color: $textColor;
+  background-color: $itemColor;
+  box-shadow: $shadow;
   padding: $padding;
-  color: black;
-  background-color: #fff;
+  border-radius: $border-radius;
   text-decoration: none;
   appearance: none;
   outline: none;
   border: none;
-  border-radius: $border-radius;
-  box-shadow: $item-shadow;
-}
-
-@mixin app-item-dark() {
-  color: white;
-  background-color: $item-bg-dark;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.root {
-  background-color: #fafafa;
+html {
+  background-color: $bgColor;
 }
 
 body {
@@ -43,14 +50,6 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.app {
-  background-color: $app-bg;
-}
-
-.app-dark {
-  background-color: $app-bg-dark;
 }
 
 ul {

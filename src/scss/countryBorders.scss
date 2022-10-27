@@ -1,9 +1,9 @@
 @import "./index.scss";
 
-.country-borders,
-.country-borders-dark {
+.country-borders {
    display: flex;
    flex-wrap: wrap;
+   color: $textColor;
 
    p {
       width: 100%;
@@ -16,8 +16,4 @@
       height: fit-content;
       margin: 0 12px 10px 0;
    }
-}
-
-.country-borders-dark a {
-   @include app-item-dark();
 }

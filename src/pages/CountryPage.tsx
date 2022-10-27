@@ -11,13 +11,13 @@ import { fetchCountry } from '../store/reducers/ActionCreators'
 
 const CountryPage: FC = ( ) => {
   const dispatch = useAppDispatch()
-  const { darkMode } = useAppSelector(state => state.darkModeReducer)
   const { country, isLoading, error } = useAppSelector(state => state.countryReducer)
   const navigate = useNavigate()
   const { name } =  useParams()
 
   useEffect(() => {
     dispatch(fetchCountry(name))
+    // eslint-disable-next-line
   },[name])
 
 
@@ -25,7 +25,7 @@ const CountryPage: FC = ( ) => {
   if (error) return <h1>Error</h1>;
 
   return (
-    <div className={darkMode ? 'country-page-dark' : 'country-page'} >
+    <div className='country-page' >
       <button onClick={() => navigate(-1)} ><MdArrowBack />Back</button>
       <img src={country.flags.svg} alt="country-flag" />
       <h2>{country.name.common}</h2>

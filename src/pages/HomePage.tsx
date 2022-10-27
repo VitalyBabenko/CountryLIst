@@ -1,9 +1,12 @@
 import { useAppSelector } from "../hooks/redux"
+
 import Filters from '../components/Filters'
 import CountryCard from "../components/CountryCard"
+import Pagintaion from '../components/Pagination'
 
 const HomePage = () => {
-  const { filtredCountries,isLoading } = useAppSelector(state => state.countriesReducer)
+  const { filtredCountries, isLoading } = useAppSelector(state => state.countriesReducer)
+  
 
   return (
     <ul>
@@ -16,6 +19,8 @@ const HomePage = () => {
           {filtredCountries.map(country =>
             <CountryCard key={country.name.common} country={country} />
           )}
+
+          <Pagintaion />
         </>
       }
     </ul>

@@ -1,13 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import countriesReducer from './reducers/CountriesSlice';
 import countryReducer from './reducers/CountrySlice'
-import darkModeReducer from './reducers/DarkModeSlice'
 
 
 const rootReducer = combineReducers({
    countriesReducer,
-   countryReducer,
-   darkModeReducer
+   countryReducer
 })
 
 export const setupStore = () => {

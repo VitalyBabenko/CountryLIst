@@ -1,7 +1,6 @@
 @import "./index.scss";
 
-.country-page,
-.country-page-dark {
+.country-page {
    display: grid;
    grid-template-areas:
       "button button button button"
@@ -10,10 +9,10 @@
       "flag flag borders borders";
    grid-template-columns: 1fr 1fr 1fr 1fr;
    grid-template-rows: 120px 100px 145px 120px;
-
    padding: 0 7%;
    height: 100vh;
-   background-color: $app-bg;
+   color: $textColor;
+   background-color: $bgColor;
 
    button {
       grid-area: button;
@@ -31,7 +30,7 @@
    img {
       grid-area: flag;
       width: 100%;
-      box-shadow: $item-shadow;
+      box-shadow: $shadow;
    }
 
    h2 {
@@ -51,26 +50,14 @@
       padding: 0 0 0 15px;
    }
 
-   .country-borders,
-   .country-borders-dark {
+   .country-borders {
       grid-area: borders;
       padding: 0 0 0 40px;
    }
 }
 
-.country-page-dark {
-   background-color: $app-bg-dark;
-   color: white;
-
-   button {
-      background-color: $item-bg-dark;
-      color: white;
-   }
-}
-
 @media screen and (max-width: 853px) {
-   .country-page,
-   .country-page-dark {
+   .country-page {
       grid-template-areas:
          "button button button button"
          "flag flag title title"
@@ -87,8 +74,7 @@
          padding: 0 0 0 40px;
       }
 
-      .country-borders,
-      .country-borders-dark {
+      .country-borders {
          padding: 0;
          p {
             margin: 20px 0 10px 0;
@@ -98,8 +84,7 @@
 }
 
 @media screen and (max-width: 615px) {
-   .country-page,
-   .country-page-dark {
+   .country-page {
       @include flex($direction: column, $justify: flex-start);
 
       button {
