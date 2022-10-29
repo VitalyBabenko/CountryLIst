@@ -8,8 +8,6 @@ const appAxios = axios.create({
    method: 'GET'
 })
 
-
-
 export const fetchCountries = createAsyncThunk(
    'countries/fetchAll',
 

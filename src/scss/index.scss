@@ -24,6 +24,12 @@ $shadow: var(--shadow);
   justify-content: $justify;
 }
 
+@mixin container($width: 86%, $max-width: 1150px) {
+  width: $width;
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
 @mixin app-item($padding: 0, $border-radius: 0) {
   color: $textColor;
   background-color: $itemColor;
@@ -50,12 +56,4 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-ul {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0 7%;
-  width: 100%;
 }

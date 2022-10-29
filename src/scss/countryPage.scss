@@ -1,6 +1,7 @@
 @import "./index.scss";
 
 .country-page {
+   @include container;
    display: grid;
    grid-template-areas:
       "button button button button"
@@ -9,7 +10,6 @@
       "flag flag borders borders";
    grid-template-columns: 1fr 1fr 1fr 1fr;
    grid-template-rows: 120px 100px 145px 120px;
-   padding: 0 7%;
    height: 100vh;
    color: $textColor;
    background-color: $bgColor;

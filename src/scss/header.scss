@@ -1,12 +1,23 @@
 @import "./index.scss";
 
 header {
+   @include container();
    @include flex($justify: space-between, $align: center);
-   padding: 20px 7%;
-   background-color: $itemColor;
-   box-shadow: $shadow;
-   width: 100%;
+   padding: 20px 0;
    font-size: 25px;
+
+   &::before {
+      content: "";
+      display: block;
+      height: 75px;
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $itemColor;
+      box-shadow: $shadow;
+      z-index: -1;
+   }
 
    a {
       // title
@@ -34,6 +45,34 @@ header {
          color: $textColor;
          margin-left: 5px;
          font-size: 20px;
+      }
+   }
+}
+
+@media screen and (max-width: 467px) {
+   header {
+      a {
+         font-size: 22px;
+      }
+
+      button span {
+         font-size: 15px;
+      }
+   }
+}
+
+@media screen and (max-width: 359px) {
+   header {
+      a {
+         font-size: 19px;
+      }
+
+      svg {
+         height: 19px;
+      }
+
+      button span {
+         font-size: 12px;
       }
    }
 }

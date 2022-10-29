@@ -4,10 +4,10 @@
    @include flex($direction: column);
    @include app-item($border-radius: 3px);
    width: 250px;
-   height: 320px;
+   height: fit-content;
    padding-bottom: 10px;
-   margin-bottom: 40px;
-   transition: 0.2s all ease-in-out;
+   margin: 0 auto 40px;
+   transition: 0.2s transform ease-in-out;
 
    &:hover {
       transform: scale(1.02);
@@ -26,5 +26,27 @@
    li {
       padding: 0 15px;
       justify-self: flex-end;
+   }
+}
+
+@media screen and (max-width: 1214px) {
+   .country-card {
+      width: 30%;
+   }
+}
+
+@media screen and (max-width: 940px) {
+   .country-card {
+      width: 47%;
+   }
+}
+
+@media screen and (max-width: 513px) {
+   .country-card {
+      width: 100%;
+
+      img {
+         height: initial;
+      }
    }
 }

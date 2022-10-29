@@ -8,7 +8,6 @@ interface PaginationProps {
    setCurrentPage: (number: number) => void;
 }
 
-
 const Pagination: FC<PaginationProps> = ({itemsPerPage,totalItems,currentPage,setCurrentPage}) => {
    const pageNumbers = []
    for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++ ) {
@@ -18,13 +17,13 @@ const Pagination: FC<PaginationProps> = ({itemsPerPage,totalItems,currentPage,se
   if(totalItems < itemsPerPage) return null
   return (
      <ul className='pagination' >  
-       {pageNumbers.map(number => 
+         {pageNumbers.map(number => 
             <li
              onClick={() => setCurrentPage(number)}
              className={currentPage === number ? 'active' : '' }
-              key={number}
+               key={number}
             >
-             {number}
+               {number}
             </li>
          )
       }
