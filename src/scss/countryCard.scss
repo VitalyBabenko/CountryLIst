@@ -5,7 +5,13 @@
    @include app-item($border-radius: 3px);
    width: 250px;
    height: 320px;
+   padding-bottom: 10px;
    margin-bottom: 40px;
+   transition: 0.2s all ease-in-out;
+
+   &:hover {
+      transform: scale(1.02);
+   }
 
    img {
       height: 150px;
@@ -14,10 +20,11 @@
 
    h3 {
       padding: 0 15px;
-      margin-bottom: 35px;
+      margin-bottom: 25px;
    }
 
    li {
       padding: 0 15px;
+      justify-self: flex-end;
    }
 }

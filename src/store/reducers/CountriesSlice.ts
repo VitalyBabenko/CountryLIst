@@ -4,16 +4,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface CountriesState {
    countries: ICountry[];
-   filtredCountries: ICountry[];
-   currentPageCounties: ICountry[];
    isLoading: boolean;
    error: string;
 }
    
 const initialState: CountriesState = {
    countries: [],
-   filtredCountries: [],
-   currentPageCounties: [],
    isLoading: false,
    error: ''
 }
@@ -21,28 +17,12 @@ const initialState: CountriesState = {
 export const countriesSlice = createSlice({
    name: 'countries',
    initialState,
-   reducers: {
-      filterByInput(state, action: PayloadAction<string>) {
-         if (action.payload) {
-            state.filtredCountries = state.countries.filter(country => 
-               country.name.common.toLowerCase().includes(action.payload.toLowerCase())
-            )
-         } else {
-            state.filtredCountries = state.countries;
-         }
-      },
-
-      paginate(state, action: PayloadAction<ICountry[]>) {
-         state.currentPageCounties = action.payload;
-      }
-
-   },
+   reducers: {},
    extraReducers: {
       [fetchCountries.fulfilled.type]:(state, action: PayloadAction<ICountry[]>) => {
          state.isLoading = false;
          state.error = '';
          state.countries = action.payload;
-         state.filtredCountries = action.payload;
       },
 
       [fetchCountries.pending.type]:(state) => {

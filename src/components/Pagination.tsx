@@ -1,38 +1,33 @@
-import { FC, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { countriesSlice } from '../store/reducers/CountriesSlice'
+import { FC } from 'react'
+import '../scss/pagination.scss'
+
+interface PaginationProps {
+   itemsPerPage: number;
+   totalItems: number;
+   currentPage: number;
+   setCurrentPage: (number: number) => void;
+}
 
 
-const Pagination: FC = () => {
-   const dispatch = useAppDispatch();
-   const { countries, filtredCountries } = useAppSelector(state => state.countriesReducer)
-   const { paginate } = countriesSlice.actions
-
-   const [currentPage] = useState(1)
-   const [countriesPerPage] = useState(12)
-
-   const lastCountryIndex = currentPage * countriesPerPage;
-   const firstCountryIndex = lastCountryIndex - countriesPerPage;
-   const currentCountries = filtredCountries.slice(firstCountryIndex, lastCountryIndex)
-   
+const Pagination: FC<PaginationProps> = ({itemsPerPage,totalItems,currentPage,setCurrentPage}) => {
    const pageNumbers = []
-
-   for (let i = 0; i < Math.ceil(countries.length / countriesPerPage);i++) {
+   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++ ) {
       pageNumbers.push(i)
    }
 
-   const handlePaginate = () => {
-      dispatch(paginate(currentCountries))
-   }
-   
+  if(totalItems < itemsPerPage) return null
   return (
-     <ul>
-        {pageNumbers.map(number => 
-           <li
-              onClick={handlePaginate}
+     <ul className='pagination' >  
+       {pageNumbers.map(number => 
+            <li
+             onClick={() => setCurrentPage(number)}
+             className={currentPage === number ? 'active' : '' }
               key={number}
-           >{number}</li>
-         )}
+            >
+             {number}
+            </li>
+         )
+      }
     </ul>
   )
 }

@@ -22,9 +22,15 @@
       @include app-item($border-radius: 3px);
       font-size: 14px;
       margin-top: 7px;
+      padding: 0 7px;
       width: 77px;
       height: 30px;
       cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+         transform: scale(1.08);
+      }
    }
 
    img {

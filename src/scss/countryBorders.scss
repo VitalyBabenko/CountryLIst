@@ -15,5 +15,10 @@
       @include app-item($padding: 4px 12px, $border-radius: 2px);
       height: fit-content;
       margin: 0 12px 10px 0;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+         transform: scale(1.08);
+      }
    }
 }

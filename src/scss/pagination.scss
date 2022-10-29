@@ -1,0 +1,27 @@
+@import "./index.scss";
+
+.pagination {
+   display: flex;
+   justify-content: center;
+   padding: 0;
+   margin: 0 0 40px;
+   width: 100%;
+
+   li {
+      @include app-item(5px 12px, 3px);
+      margin: 0 9px 12px;
+      color: $textColor;
+      list-style: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+         transform: scale(1.1);
+      }
+
+      &.active {
+         transform: scale(1.25);
+         box-shadow: rgba(0, 0, 0, 0.3) 0 0 8px;
+      }
+   }
+}
