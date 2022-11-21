@@ -1,86 +1,85 @@
-import {ChangeEvent, useState, useEffect} from 'react'
-import { useAppDispatch, useAppSelector } from "../hooks/redux"
-import { MdSearch, MdKeyboardArrowDown } from 'react-icons/md'
-import CountryCard from "../components/CountryCard"
-import { fetchCountries } from "../store/reducers/ActionCreators"
+import { ChangeEvent, useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { MdSearch, MdKeyboardArrowDown } from "react-icons/md";
+import CountryCard from "../components/CountryCard";
+import { fetchCountries } from "../store/reducers/ActionCreators";
 
-import '../scss/homePage.scss'
-import { ICountry } from '../types/ICountry'
-import Pagination from '../components/Pagination'
+import "../scss/homePage.scss";
+import { ICountry } from "../types/ICountry";
+import Pagination from "../components/Pagination";
+import Select from "../components/Select";
 
 const HomePage = () => {
-  const dispatch = useAppDispatch()
-  const [inputValue, setInputValue] = useState('')
-  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([])
-  const { countries, isLoading } = useAppSelector(state => state.countriesReducer)
+  const dispatch = useAppDispatch();
+  const [inputValue, setInputValue] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState<ICountry[]>([]);
+  const { countries, isLoading } = useAppSelector(
+    (state) => state.countriesReducer
+  );
 
-  const handleRegionFilter = (e: ChangeEvent<HTMLSelectElement>) => dispatch(fetchCountries(e.target.value))
+  // const handleRegionFilter = (e: ChangeEvent<HTMLSelectElement>) =>
+  //   dispatch(fetchCountries(e.target.value));
 
   const filterByInput = (countries: ICountry[]) => {
     if (!inputValue) return countries;
-    return countries.filter(c => c.name.common.toLowerCase().includes(inputValue.toLowerCase()))
-  }
+    return countries.filter((c) =>
+      c.name.common.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  };
 
-  // pagination 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [countriesPerPage] = useState(12)
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [countriesPerPage] = useState(12);
   const lastCountryIndex = currentPage * countriesPerPage;
   const firstCountryIndex = lastCountryIndex - countriesPerPage;
-  const currentCountries = filteredCountries.slice(firstCountryIndex, lastCountryIndex)
+  const currentCountries = filteredCountries.slice(
+    firstCountryIndex,
+    lastCountryIndex
+  );
 
   useEffect(() => {
     const Debounce = setTimeout(() => {
-      const result = filterByInput(countries)
-      setFilteredCountries(result)
-      setCurrentPage(1)
+      const result = filterByInput(countries);
+      setFilteredCountries(result);
+      setCurrentPage(1);
     }, 250);
-    return () => clearTimeout(Debounce)
-  // eslint-disable-next-line 
-  }, [inputValue, countries])
+    return () => clearTimeout(Debounce);
+    // eslint-disable-next-line
+  }, [inputValue, countries]);
 
   return (
-    <div className='home-page'>
-
-      <div className='filters'>
+    <div className="home-page">
+      <div className="filters">
         <MdSearch />
         <MdKeyboardArrowDown />
         <input
-          onInput={(e:ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+          onInput={(e: ChangeEvent<HTMLInputElement>) =>
+            setInputValue(e.target.value)
+          }
           type="text"
           placeholder="Seatch for a country..."
         />
-        <select
-          onChange={handleRegionFilter}
-          id="regionFilter"
-        >
-          <option value="all">Filter by Region</option>
-          <option value="Africa">Africa</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="North America">North America</option>
-          <option value="South America">South America</option>
-          <option value="Australia">Australia</option>
-        </select>
+        <Select />
       </div>
 
-      {isLoading
-        ?
+      {isLoading ? (
         <h1>Loading</h1>
-        : 
+      ) : (
         <>
-          {currentCountries.map(country =>
+          {currentCountries.map((country) => (
             <CountryCard key={country.name.common} country={country} />
-          )}
+          ))}
 
           <Pagination
             itemsPerPage={countriesPerPage}
             totalItems={filteredCountries.length}
             currentPage={currentPage}
-            setCurrentPage={setCurrentPage}  />
+            setCurrentPage={setCurrentPage}
+          />
         </>
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
