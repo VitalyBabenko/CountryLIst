@@ -5,6 +5,7 @@ import CountryBorders from "../components/CountryBorders";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import "../scss/countryPage.scss";
 import { fetchCountry } from "../store/reducers/ActionCreators";
+import LoadingPage from "./LoadingPage";
 
 const CountryPage: FC = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ const CountryPage: FC = () => {
     // eslint-disable-next-line
   }, [name]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <LoadingPage />;
   if (error) return <h1>Error</h1>;
 
   return (

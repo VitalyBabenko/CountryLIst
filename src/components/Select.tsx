@@ -1,13 +1,23 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { useAppDispatch } from "../hooks/redux";
 import { fetchCountries } from "../store/reducers/ActionCreators";
 
 const Select: FC = () => {
   const dispatch = useAppDispatch();
-  const handleRegionFilter = (e: ChangeEvent<HTMLSelectElement>) =>
-    dispatch(fetchCountries(e.target.value));
+  const [selectValue, setSelectValue] = useState("all");
+
+  useEffect(() => {
+    dispatch(fetchCountries(selectValue));
+    // eslint-disable-next-line
+  }, [selectValue]);
+
   return (
-    <select onChange={handleRegionFilter} id="regionFilter">
+    <select
+      value={selectValue}
+      onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+        setSelectValue(e.target.value)
+      }
+    >
       <option value="all">Filter by Region</option>
       <option value="Africa">Africa</option>
       <option value="Asia">Asia</option>

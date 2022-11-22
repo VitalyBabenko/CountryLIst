@@ -1,34 +1,38 @@
-import { FC } from 'react'
-import '../scss/pagination.scss'
+import { FC } from "react";
+import "../scss/pagination.scss";
 
 interface PaginationProps {
-   itemsPerPage: number;
-   totalItems: number;
-   currentPage: number;
-   setCurrentPage: (number: number) => void;
+  page: number;
+  totalPages: number;
+  nextPage: () => void;
+  prevPage: () => void;
+  setPage: (page: number) => void;
 }
 
-const Pagination: FC<PaginationProps> = ({itemsPerPage,totalItems,currentPage,setCurrentPage}) => {
-   const pageNumbers = []
-   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++ ) {
-      pageNumbers.push(i)
-   }
-
-  if(totalItems < itemsPerPage) return null
+const Pagination: FC<PaginationProps> = ({
+  page,
+  totalPages,
+  prevPage,
+  setPage,
+  nextPage,
+}) => {
+  if (totalPages < 2) return <></>;
   return (
-     <ul className='pagination' >  
-         {pageNumbers.map(number => 
-            <li
-             onClick={() => setCurrentPage(number)}
-             className={currentPage === number ? 'active' : '' }
-               key={number}
-            >
-               {number}
-            </li>
-         )
-      }
+    <ul className="pagination">
+      <li onClick={prevPage}>&larr;</li>
+      {/* @ts-ignore */}
+      {[...Array(totalPages).keys()].map((el) => (
+        <li
+          onClick={() => setPage(el + 1)}
+          key={el}
+          className={`page ${page === el + 1 ? "active" : ""}`}
+        >
+          {el + 1}
+        </li>
+      ))}
+      <li onClick={nextPage}>&rarr;</li>
     </ul>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;
