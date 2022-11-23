@@ -1,46 +1,57 @@
-# Getting Started with Create React App
+# REST Countries API with color theme switcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Chalange from [frontendmentor.io](https://www.frontendmentor.io/) on advanced difficulty level:
 
-## Available Scripts
+> Responsive page displaying all countries from the **[API](https://restcountries.com)**, with pagination and detailed page for each country
 
-In the project directory, you can run:
+### 📸 Screenshots:
 
-### `npm start`
+![REST Countries app screenshot](https://res.cloudinary.com/dz209s6jk/image/upload/v1554827486/Challenges/wirxeocmd6tpnn9c5oqc.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Page capabilities:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Show all countries from the API on the home page
+- Search for a country using an input field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🏃 Running:
 
-### `npm run build`
+### To start the project, you need to perform several actions:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Сlone the repository
+2. Go to project folder
+3. Install node_modules
+4. Start development server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Console commands:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+git clone https://github.com/VitalyBabenko/CountryLIst.git
+cd CountryList
+npm install
+npm start
+```
 
-### `npm run eject`
+This will run locally and listening on port 3000 (http://localhost:3000)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠 Stack:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **React v18**
+- **React Router**
+- **Redux toolkit**
+- **Axios**
+- **SCSS**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## Pagination
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Rest Countries Api ](https://restcountries.com)
+does not support pagination so the [usePagination](https://github.com/VitalyBabenko/CountryLIst/blob/master/src/hooks/usePagination.ts) hook was used.

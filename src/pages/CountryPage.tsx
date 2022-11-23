@@ -55,9 +55,6 @@ const CountryPage: FC = () => {
           Area: <span>{country.area}</span>
         </li>
         <li>
-          Start of week: <span> {country.startOfWeek}</span>
-        </li>
-        <li>
           Languages: <span>{Object.values(country.languages).join(", ")}</span>
         </li>
       </ul>
