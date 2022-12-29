@@ -31,6 +31,7 @@ const HomePage = () => {
     setFilteredCountries(countries);
   }, [countries]);
 
+  if (isLoading) return <LoadingPage />;
   return (
     <div className="home-page">
       <div className="filters">
@@ -42,7 +43,6 @@ const HomePage = () => {
         <Select />
       </div>
 
-      {isLoading && <LoadingPage />}
       {filteredCountries
         .slice(firstContentIndex, lastContentIndex)
         .map((country) => (
